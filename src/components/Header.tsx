@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Car, Phone, MapPin, Clock } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -58,9 +59,11 @@ const Header = () => {
 
           {/* Action Buttons */}
           <div className="flex items-center gap-3">
+          <Link to="/login">
             <Button variant="outline" size="sm">
               เข้าสู่ระบบ
             </Button>
+          </Link>
             <Button variant="hero" size="sm">
               จองบริการ
             </Button>

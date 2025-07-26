@@ -85,6 +85,7 @@ const ServiceCard = ({
           className="w-full" 
           variant={popular ? "hero" : "default"}
           size="lg"
+          onClick={() => window.location.href = '/payment'}
         >
           เลือกบริการนี้
         </Button>

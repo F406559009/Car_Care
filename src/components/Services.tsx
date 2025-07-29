@@ -5,7 +5,11 @@ import interiorCleanImage from "@/assets/interior-clean.jpg";
 import carPolishImage from "@/assets/car-polish.jpg";
 import engineCleanImage from "@/assets/engine-clean.jpg";
 
-const Services = () => {
+interface ServicesProps {
+  onAddToCart?: (service: any) => void;
+}
+
+const Services = ({ onAddToCart }: ServicesProps) => {
   const services = [
     {
       title: "ล้างรถพื้นฐาน",
@@ -99,29 +103,11 @@ const Services = () => {
               features={service.features}
               popular={service.popular}
               discount={service.discount}
+              onAddToCart={onAddToCart}
             />
           ))}
         </div>
 
-        {/* CTA Section */}
-        <div className="text-center mt-16">
-          <div className="bg-gradient-card p-8 rounded-2xl border border-border shadow-card max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-foreground mb-4">
-              ไม่แน่ใจจะเลือกบริการไหน?
-            </h3>
-            <p className="text-muted-foreground mb-6">
-              ทีมงานของเราพร้อมแนะนำบริการที่เหมาะสมกับรถและงบประมาณของคุณ
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-6 py-3 bg-gradient-primary text-white rounded-lg hover:shadow-glow transition-all duration-300">
-                💬 ปรึกษาทีมงาน
-              </button>
-              <button className="px-6 py-3 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-all duration-300">
-                📞 โทรสอบถาม
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

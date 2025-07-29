@@ -1,17 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Car, Phone, MapPin, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
-import NotificationSystem from "./NotificationSystem";
-import Cart, { CartItem } from "./Cart";
 
-interface HeaderProps {
-  cartItems?: CartItem[];
-  onUpdateQuantity?: (id: string, quantity: number) => void;
-  onRemoveItem?: (id: string) => void;
-  onClearCart?: () => void;
-}
-
-const Header = ({ cartItems = [], onUpdateQuantity, onRemoveItem, onClearCart }: HeaderProps) => {
+const Header = () => {
   return (
     <header className="bg-card shadow-card border-b border-border">
       {/* Top Contact Bar */}
@@ -71,18 +62,11 @@ const Header = ({ cartItems = [], onUpdateQuantity, onRemoveItem, onClearCart }:
 
           {/* Action Buttons */}
           <div className="flex items-center gap-3">
-            <NotificationSystem />
-            <Cart 
-              items={cartItems}
-              onUpdateQuantity={onUpdateQuantity || (() => {})}
-              onRemoveItem={onRemoveItem || (() => {})}
-              onClearCart={onClearCart || (() => {})}
-            />
-            <Link to="/login">
-              <Button variant="outline" size="sm">
-                เข้าสู่ระบบ
-              </Button>
-            </Link>
+          <Link to="/login">
+            <Button variant="outline" size="sm">
+              เข้าสู่ระบบ
+            </Button>
+          </Link>
             <Button variant="hero" size="sm">
               จองบริการ
             </Button>

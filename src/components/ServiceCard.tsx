@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Clock, Star, CheckCircle, ShoppingCart } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { Clock, Star, CheckCircle } from "lucide-react";
 
 interface ServiceCardProps {
   title: string;
@@ -13,7 +12,6 @@ interface ServiceCardProps {
   features: string[];
   popular?: boolean;
   discount?: string;
-  onAddToCart?: (service: any) => void;
 }
 
 const ServiceCard = ({ 
@@ -24,31 +22,8 @@ const ServiceCard = ({
   image, 
   features, 
   popular = false,
-  discount,
-  onAddToCart
+  discount 
 }: ServiceCardProps) => {
-  const { toast } = useToast();
-  
-  const priceNumber = parseInt(price.replace(/[฿,]/g, ''));
-  
-  const handleAddToCart = () => {
-    const service = {
-      id: title,
-      title,
-      price: priceNumber,
-      duration,
-      image,
-      quantity: 1
-    };
-    
-    if (onAddToCart) {
-      onAddToCart(service);
-      toast({
-        title: "เพิ่มในตะกร้าแล้ว",
-        description: `${title} ถูกเพิ่มลงในตะกร้าเรียบร้อยแล้ว`,
-      });
-    }
-  };
   return (
     <Card className="group hover:shadow-premium transition-all duration-300 hover:-translate-y-2 bg-gradient-card relative overflow-hidden">
       {popular && (
@@ -106,17 +81,14 @@ const ServiceCard = ({
       </CardContent>
 
       <CardFooter className="pt-4">
-        <div className="flex gap-2 w-full">
-          <Button 
-            className="flex-1" 
-            variant={popular ? "hero" : "default"}
-            size="lg"
-            onClick={handleAddToCart}
-          >
-            <ShoppingCart className="w-4 h-4 mr-2" />
-            เพิ่มลงตะกร้า
-          </Button>
-        </div>
+        <Button 
+          className="w-full" 
+          variant={popular ? "hero" : "default"}
+          size="lg"
+          onClick={() => window.location.href = '/payment'}
+        >
+          เลือกบริการนี้
+        </Button>
       </CardFooter>
     </Card>
   );
